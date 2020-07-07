@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.version: 1.19.0
+  labels:
+    infra.service: prometheus
+  name: prometheus
+spec:
+  ports:
+  - name: "9090"
+    port: 9090
+    targetPort: 9090
+  selector:
+    infra.service: prometheus
+status:
+  loadBalancer: {}

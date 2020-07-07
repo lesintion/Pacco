@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+
+    kompose.version: 1.19.0
+
+  labels:
+    infra.service: seq
+  name: seq
+spec:
+  ports:
+  - name: "5341"
+    port: 5341
+    targetPort: 80
+  selector:
+    infra.service: seq
+status:
+  loadBalancer: {}

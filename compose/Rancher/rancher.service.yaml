@@ -1,0 +1,26 @@
+﻿# This Service manifest defines:
+# - a load balancer for pods matching label "app: dotnet-hello-world"
+# - exposing the application to the public Internet (type:LoadBalancer)
+# - routes port 80 of the load balancer to the port 8080 of the Pods.
+# Syntax reference https://kubernetes.io/docs/concepts/configuration/overview/
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: cattle-system
+  name: rancher
+  labels:
+    app: rancher
+    service: rancher
+
+spec:
+  type: ClusterIP
+  selector:
+    app: rancher
+    service: rancher
+  ports:
+  - port: 80
+    name: http
+    targetPort: http-server
+  - port: 443
+    name: https
+    targetPort: https-server

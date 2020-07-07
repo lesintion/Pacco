@@ -6,7 +6,7 @@ do
 	 echo ========================================================
 	 echo Cloning the repository: $REPOSITORY
 	 echo ========================================================
-	 REPO_URL=https://github.com/devmentors/$REPOSITORY.git
+	 REPO_URL=https://github.com/lesintion/$REPOSITORY.git
 	 git clone $REPO_URL
 	 cd $REPOSITORY && cd ..
 done

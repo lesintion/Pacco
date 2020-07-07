@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+
+    kompose.version: 1.19.0
+
+  labels:
+    infra.service: prometheus
+  name: prometheus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      infra.service: prometheus
+  template:
+    metadata:
+      annotations:
+        kompose.version: 1.19.0
+      labels:
+        infra.service: prometheus
+    spec:
+      containers:
+      - image: prom/prometheus
+        name: prometheus
+        ports:
+        - containerPort: 9090
+        resources: {}
+      restartPolicy: Always
+status: {}

@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+
+    kompose.version: 1.19.0
+
+  labels:
+    infra.service: redis
+  name: redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      infra.service: redis
+  template:
+    metadata:
+      annotations:
+
+        kompose.version: 1.19.0
+
+      labels:
+        infra.service: redis
+    spec:
+      containers:
+      - image: redis
+        name: redis
+        ports:
+        - containerPort: 6379
+        resources: {}
+        volumeMounts:
+        - mountPath: /data
+          name: redis
+      restartPolicy: Always
+      volumes:
+      - name: redis
+        persistentVolumeClaim:
+          claimName: redis
+status: {}

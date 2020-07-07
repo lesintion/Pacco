@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.version: 1.19.0
+  labels:
+    infra.service: fabio
+  name: fabio
+spec:
+  ports:
+  - name: "9998"
+    port: 9998
+    targetPort: 9998
+  - name: "9999"
+    port: 9999
+    targetPort: 9999
+  selector:
+    infra.service: fabio

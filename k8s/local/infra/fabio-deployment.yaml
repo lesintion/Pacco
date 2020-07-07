@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.version: 1.19.0
+  labels:
+    infra.service: fabio
+  name: fabio
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      infra.service: fabio
+  template:
+    metadata:
+      annotations:
+        kompose.version: 1.19.0
+      labels:
+        infra.service: fabio
+    spec:
+      containers:
+      - env:
+        - name: FABIO_REGISTRY_CONSUL_ADDR
+          value: consul:8500
+        image: fabiolb/fabio
+        name: fabio
+        ports:
+        - containerPort: 9998
+        - containerPort: 9999
+      restartPolicy: Always

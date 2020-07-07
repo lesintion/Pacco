@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f services.yml
+    kompose.version: 1.19.0 (f63a961c)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: api-gateway
+  name: api-gateway
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f services.yml
+        kompose.version: 1.19.0 (f63a961c)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: api-gateway
+    spec:
+      containers:
+      - env:
+        - name: NTRADA_CONFIG
+          value: ntrada-async.docker.yml
+        image: compose_pacco.apigateway
+        name: api-gateway
+        ports:
+        - containerPort: 80
+        resources: {}
+      restartPolicy: Always
+status: {}

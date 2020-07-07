@@ -51,7 +51,7 @@ services:
       - 16686:16686
 
   mongo:
-    image: mongo
+    image: mongo:4
     container_name: mongo
     restart: unless-stopped
     # environment:
@@ -85,7 +85,7 @@ services:
       - 5672:5672
       - 15672:15672
       - 15692:15692
-    # volumes: 
+    # volumes:
     #   - rabbitmq:/var/lib/rabbitmq
 
   redis:
@@ -96,11 +96,11 @@ services:
       - pacco
     ports:
       - 6379:6379
-    volumes: 
+    volumes:
       - redis:/data
 
   seq:
-    image: datalust/seq 
+    image: datalust/seq
     container_name: seq
     restart: unless-stopped
     environment:
@@ -109,7 +109,7 @@ services:
       - pacco
     ports:
       - 5341:80
-    # volumes: 
+    # volumes:
     #   - seq:/data
 
   vault:
@@ -145,4 +145,3 @@ volumes:
     driver: local
   # seq:
   #   driver: local
-  

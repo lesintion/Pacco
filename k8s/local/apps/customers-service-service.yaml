@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f services.yml
+    kompose.version: 1.19.0 (f63a961c)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: customers-service
+  name: customers-service
+spec:
+  ports:
+  - name: "5002"
+    port: 5002
+    targetPort: 80
+  selector:
+    io.kompose.service: customers-service
+status:
+  loadBalancer: {}

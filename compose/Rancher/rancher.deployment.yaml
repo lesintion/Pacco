@@ -1,0 +1,34 @@
+﻿# This Deployment manifest defines:
+# - single-replica deployment of the container image, with label "app: dotnet-guestbook-frontend"
+# - Pod exposes port 8080
+# - specify PORT environment variable to the container process
+# Syntax reference https://kubernetes.io/docs/concepts/configuration/overview/
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: cattle-system
+  name: rancher
+  labels:
+    app: rancher
+    service: rancher
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rancher
+      service: rancher
+  template:
+    metadata:
+      labels:
+        app: rancher
+        service: rancher
+    spec:
+      containers:
+      - name: rancher
+        image: rancher/rancher:latest
+        imagePullPolicy: Never
+        ports:
+        - name: http-server
+          containerPort: 80
+        - name: https-server
+          containerPort: 443

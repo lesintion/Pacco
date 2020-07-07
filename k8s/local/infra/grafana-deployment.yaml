@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+
+    kompose.version: 1.19.0
+
+  labels:
+    infra.service: grafana
+  name: grafana
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      infra.service: grafana
+  template:
+    metadata:
+      annotations:
+
+        kompose.version: 1.19.0
+
+      labels:
+        infra.service: grafana
+    spec:
+      containers:
+      - image: grafana/grafana
+        name: grafana
+        ports:
+        - containerPort: 3000
+        resources: {}
+      restartPolicy: Always
+status: {}
